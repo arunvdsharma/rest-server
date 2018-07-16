@@ -1,4 +1,4 @@
-package org.rest.server.components;
+package org.rest.server.core.components;
 
 public class ControllerBean extends Bean{
 

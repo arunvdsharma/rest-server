@@ -1,6 +1,6 @@
 package org.rest.server.runtime;
 
-import org.rest.server.components.Bean;
+import org.rest.server.core.components.Bean;
 
 public interface RuntimeEnvironment {
 

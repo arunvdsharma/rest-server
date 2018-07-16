@@ -2,7 +2,7 @@ package org.rest.server.runtime;
 
 import java.lang.reflect.Method;
 
-import org.rest.server.components.Bean;
+import org.rest.server.core.components.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

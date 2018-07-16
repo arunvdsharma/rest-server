@@ -1,4 +1,4 @@
-package org.rest.server.components;
+package org.rest.server.core.components;
 
 import org.rest.server.runtime.RuntimeEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;

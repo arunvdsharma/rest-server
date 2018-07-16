@@ -1,10 +1,16 @@
-package org.rest.server.components;
+package org.rest.server.core.factory;
+
+import org.rest.server.core.components.ControllerBean;
 
 public interface ControllerBuilder {
 
-	ControllerBuilder initController(String className);
+	ControllerBuilder configureClass(String className);
+
 	ControllerBuilder addMethod(String methodName);
+
 	ControllerBuilder addRequestMapping(String url);
+
 	ControllerBuilder addMethodResponse(String methodName);
+
 	ControllerBean buildController();
 }

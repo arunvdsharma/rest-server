@@ -1,4 +1,4 @@
-package org.rest.server.components;
+package org.rest.server.core.factory;
 
 public interface ControllerBuilderFactory {
 
