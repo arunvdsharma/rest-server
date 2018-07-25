@@ -7,6 +7,6 @@ public interface BeanBuilder {
 
 	BeanBuilder configure(String classSignature);
 	BeanBuilder addMethod(MethodBody methodBody);
-	Bean build();
+	Bean buildObject();
 	String buildString();
 }

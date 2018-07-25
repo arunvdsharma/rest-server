@@ -1,4 +1,4 @@
-package org.rest.server.core.components;
+package org.rest.server.core.controller;
 
 import org.rest.server.runtime.RuntimeEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,6 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 public class AppController {
-
-	
 
 	@Autowired
 	private RuntimeEnvironment envrionment;

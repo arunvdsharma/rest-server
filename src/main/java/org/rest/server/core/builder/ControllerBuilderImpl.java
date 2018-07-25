@@ -1,7 +1,7 @@
 package org.rest.server.core.builder;
 
 import org.rest.server.common.utils.CommonUtils;
-import org.rest.server.core.components.ControllerBean;
+import org.rest.server.core.components.Controller;
 import org.rest.server.core.components.MethodBody;
 import org.springframework.stereotype.Component;
 
@@ -10,12 +10,12 @@ class ControllerBuilderImpl implements ControllerBuilder {
 
 	private static String INTERNAL_PACKAGE_NAME = ControllerBuilderImpl.class.getPackage().getName();
 
-	private ControllerBean bean;
+	private Controller bean;
 
 	@Override
 	public ControllerBuilder configure(String classSignature) {
 		CommonUtils.checkIfArgumentIsNull("classSignature", classSignature);
-		bean = new ControllerBean(classSignature);
+		bean = new Controller(classSignature);
 		bean.setPackageName(INTERNAL_PACKAGE_NAME);
 		return this;
 	}
@@ -35,8 +35,8 @@ class ControllerBuilderImpl implements ControllerBuilder {
 	}
 
 	@Override
-	public ControllerBean build() {
-		ControllerBean newBean = bean;
+	public Controller buildObject() {
+		Controller newBean = bean;
 		bean = null;
 		return newBean;
 	}

@@ -1,10 +1,10 @@
 package org.rest.server.core.components;
 
-public class ControllerBean extends Bean {
+public class Controller extends Bean {
 
 	private String requestMappingURL;
 	
-	public ControllerBean(String classSignature){
+	public Controller(String classSignature){
 		super(classSignature);
 	}
 

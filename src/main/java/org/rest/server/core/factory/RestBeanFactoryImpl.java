@@ -1,4 +1,4 @@
-package org.rest.server.core;
+package org.rest.server.core.factory;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,19 +7,20 @@ import org.rest.server.core.builder.BeanBuilder;
 import org.rest.server.core.builder.ControllerBuilder;
 import org.rest.server.core.components.Bean;
 import org.rest.server.core.components.BeanType;
-import org.rest.server.core.components.ControllerBean;
 import org.rest.server.core.components.MethodBody;
+import org.rest.server.ui.vos.BeanVO;
+import org.rest.server.ui.vos.ControllerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-class BeanCreatorImpl implements BeanCreator {
+class RestBeanFactoryImpl implements RestBeanFactory {
 
 	@Autowired
 	private BeanBuilder beanBuilder;
 
 	@Override
-	public Bean createBean(BeanType beanType, Bean bean) {
+	public Bean getBean(BeanType beanType, BeanVO bean) {
 		beanBuilder.configure(bean.getClassSignature());
 		
 		List<MethodBody> methodList = bean.getMethods();
@@ -29,11 +30,11 @@ class BeanCreatorImpl implements BeanCreator {
 		
 		if (beanType == BeanType.CONTROLLER) {
 			ControllerBuilder controllerBuilder = (ControllerBuilder) beanBuilder;
-			ControllerBean cBean = (ControllerBean) bean;
+			ControllerVO cBean = (ControllerVO) bean;
 			controllerBuilder.addControllerMapping(cBean.getRequestMappingURL());
-			return controllerBuilder.build();
+			return controllerBuilder.buildObject();
 		} else {
-			return beanBuilder.build();
+			return beanBuilder.buildObject();
 		}
 	}
 
