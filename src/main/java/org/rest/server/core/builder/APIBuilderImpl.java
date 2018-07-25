@@ -1,42 +1,42 @@
 package org.rest.server.core.builder;
 
 import org.rest.server.common.utils.CommonUtils;
-import org.rest.server.core.components.Controller;
+import org.rest.server.core.components.APIBean;
 import org.rest.server.core.components.MethodBody;
 import org.springframework.stereotype.Component;
 
 @Component
-class ControllerBuilderImpl implements ControllerBuilder {
+class APIBuilderImpl implements APIBuilder {
 
-	private static String INTERNAL_PACKAGE_NAME = ControllerBuilderImpl.class.getPackage().getName();
+	private static String INTERNAL_PACKAGE_NAME = APIBuilderImpl.class.getPackage().getName();
 
-	private Controller bean;
+	private APIBean bean;
 
 	@Override
-	public ControllerBuilder configure(String classSignature) {
+	public APIBuilder configure(String classSignature) {
 		CommonUtils.checkIfArgumentIsNull("classSignature", classSignature);
-		bean = new Controller(classSignature);
+		bean = new APIBean(classSignature);
 		bean.setPackageName(INTERNAL_PACKAGE_NAME);
 		return this;
 	}
 
 	@Override
-	public ControllerBuilder addMethod(MethodBody methodBody) {
+	public APIBuilder addMethod(MethodBody methodBody) {
 		CommonUtils.checkIfArgumentIsNull("methodBody", methodBody);
 		bean.addMethod(methodBody);
 		return this;
 	}
 
 	@Override
-	public ControllerBuilder addControllerMapping(String requestMappingUrl) {
+	public APIBuilder addControllerMapping(String requestMappingUrl) {
 		CommonUtils.checkIfArgumentIsNull("Controller requestMappingUrl", requestMappingUrl);
 		bean.setRequestMappingURL(requestMappingUrl);
 		return this;
 	}
 
 	@Override
-	public Controller buildObject() {
-		Controller newBean = bean;
+	public APIBean buildObject() {
+		APIBean newBean = bean;
 		bean = null;
 		return newBean;
 	}

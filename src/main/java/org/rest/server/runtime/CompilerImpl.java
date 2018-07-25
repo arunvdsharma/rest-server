@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 import net.openhft.compiler.CompilerUtils;
 
 @Component
-class RuntimeEnvironmentImpl implements RuntimeEnvironment {
+class CompilerImpl implements Compiler {
 
 	@Autowired
 	private ServerContainer container;
 
 	private StringBuilder sb = new StringBuilder();
 
-	public RuntimeEnvironmentImpl() {
+	public CompilerImpl() {
 
 		sb.append("package com.test.config;\n");
 		sb.append("import org.springframework.web.bind.annotation.*;\n");

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.rest.server.core.builder.BeanBuilder;
-import org.rest.server.core.builder.ControllerBuilder;
+import org.rest.server.core.builder.APIBuilder;
 import org.rest.server.core.components.Bean;
 import org.rest.server.core.components.BeanType;
 import org.rest.server.core.components.MethodBody;
@@ -29,7 +29,7 @@ class RestBeanFactoryImpl implements RestBeanFactory {
 		}));
 		
 		if (beanType == BeanType.CONTROLLER) {
-			ControllerBuilder controllerBuilder = (ControllerBuilder) beanBuilder;
+			APIBuilder controllerBuilder = (APIBuilder) beanBuilder;
 			ControllerVO cBean = (ControllerVO) bean;
 			controllerBuilder.addControllerMapping(cBean.getRequestMappingURL());
 			return controllerBuilder.buildObject();

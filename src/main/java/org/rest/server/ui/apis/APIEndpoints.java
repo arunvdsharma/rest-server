@@ -1,6 +1,6 @@
-package org.rest.server.core.controller;
+package org.rest.server.ui.apis;
 
-import org.rest.server.runtime.RuntimeEnvironment;
+import org.rest.server.runtime.Compiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
-public class AppController {
+public class APIEndpoints {
 
 	@Autowired
-	private RuntimeEnvironment envrionment;
+	private Compiler envrionment;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	@HystrixCommand(fallbackMethod = "getDataFallBack")
