@@ -1,9 +1,13 @@
-package org.rest.server.ui.vos;
+package org.rest.server.web.ui.vos;
 
-public class ControllerVO extends BeanVO{
+public class APIBeanVO extends BeanVO {
 	private String requestMappingURL;
 
-	public ControllerVO(String classSignature){
+	
+	public APIBeanVO(){
+		super();
+	}
+	public APIBeanVO(String classSignature){
 		super(classSignature);
 	}
 

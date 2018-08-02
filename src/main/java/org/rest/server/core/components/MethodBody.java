@@ -14,12 +14,13 @@ public class MethodBody {
 	private String requestMapping;
 
 	public MethodBody() {
+		this.bodyStatements = new ArrayList<>();
+		this.requestMapping = StringUtils.EMPTY;
 	}
 
 	public MethodBody(String methodSignature) {
-		this.bodyStatements = new ArrayList<>();
+		this();
 		this.methodSignature = methodSignature;
-		this.requestMapping = StringUtils.EMPTY;
 	}
 
 	public String getMethodSignature() {

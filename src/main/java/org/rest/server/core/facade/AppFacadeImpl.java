@@ -1,6 +1,6 @@
 package org.rest.server.core.facade;
 
-import org.rest.server.core.factory.RestBeanFactory;
+import org.rest.server.core.factory.APIBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,5 +14,5 @@ import org.springframework.stereotype.Component;
 class AppFacadeImpl implements AppFacade{
 
 	@Autowired
-	private RestBeanFactory bean;
+	private APIBeanFactory factory;
 }

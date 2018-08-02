@@ -1,5 +1,7 @@
 package org.rest.server.core.builder;
 
+import java.util.List;
+
 import org.rest.server.core.components.Bean;
 import org.rest.server.core.components.MethodBody;
 
@@ -18,13 +20,13 @@ public class BeanBuilderImpl implements BeanBuilder{
 	}
 
 	@Override
-	public Bean buildObject() {
+	public Bean buildBean() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String buildString() {
+	public BeanBuilder addImports(List<String> importList) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,8 +4,8 @@ public class APIBean extends Bean {
 
 	private String requestMappingURL;
 	
-	public APIBean(String classSignature){
-		super(classSignature);
+	public APIBean(String className){
+		super(className);
 	}
 
 	public String getRequestMappingURL() {
