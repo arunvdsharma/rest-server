@@ -1,4 +1,4 @@
-package org.rest.server.core.builder;
+package org.rest.server.core.factory;
 
 import java.util.List;
 

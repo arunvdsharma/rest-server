@@ -1,9 +1,9 @@
-package org.rest.server.runtime;
+package org.rest.server.core.runtime;
 
 import java.lang.reflect.Method;
 
-import org.rest.server.common.components.ClassCompilationException;
 import org.rest.server.core.components.Bean;
+import org.rest.server.core.exception.ClassCompilationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

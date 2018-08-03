@@ -1,4 +1,4 @@
-package org.rest.server.common.components;
+package org.rest.server.core.exception;
 
 
 public class ClassCompilationException extends Throwable{

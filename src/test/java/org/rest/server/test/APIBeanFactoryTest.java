@@ -2,13 +2,13 @@ package org.rest.server.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.rest.server.common.components.ClassCompilationException;
+import org.rest.server.app.vo.APIBeanVO;
 import org.rest.server.core.components.Bean;
 import org.rest.server.core.components.BeanType;
 import org.rest.server.core.components.MethodBody;
+import org.rest.server.core.exception.ClassCompilationException;
 import org.rest.server.core.factory.APIBeanFactory;
-import org.rest.server.runtime.RuntimeCompiler;
-import org.rest.server.web.ui.vos.APIBeanVO;
+import org.rest.server.core.runtime.RuntimeCompiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;

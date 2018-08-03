@@ -1,4 +1,4 @@
-package org.rest.server.common.utils;
+package org.rest.server.core.utils;
 
 import org.apache.commons.lang3.ObjectUtils;
 

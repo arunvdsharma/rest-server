@@ -1,4 +1,4 @@
-package org.rest.server.web.ui.vos;
+package org.rest.server.app.vo;
 
 import java.util.ArrayList;
 import java.util.List;

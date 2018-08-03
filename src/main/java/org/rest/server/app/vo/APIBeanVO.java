@@ -1,4 +1,4 @@
-package org.rest.server.web.ui.vos;
+package org.rest.server.app.vo;
 
 public class APIBeanVO extends BeanVO {
 	private String requestMappingURL;

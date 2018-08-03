@@ -1,7 +1,7 @@
-package org.rest.server.runtime;
+package org.rest.server.core.runtime;
 
-import org.rest.server.common.components.ClassCompilationException;
 import org.rest.server.core.components.Bean;
+import org.rest.server.core.exception.ClassCompilationException;
 
 public interface RuntimeCompiler {
 

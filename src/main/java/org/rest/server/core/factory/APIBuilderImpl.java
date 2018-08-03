@@ -1,11 +1,13 @@
-package org.rest.server.core.builder;
+package org.rest.server.core.factory;
 
 import java.util.List;
 
-import org.rest.server.common.utils.CommonUtils;
 import org.rest.server.core.components.APIBean;
 import org.rest.server.core.components.MethodBody;
+import org.rest.server.core.utils.CommonUtils;
+import org.rest.server.core.utils.Constants;
 import org.springframework.stereotype.Component;
+
 
 @Component
 class APIBuilderImpl implements APIBuilder {
@@ -44,37 +46,30 @@ class APIBuilderImpl implements APIBuilder {
 	@Override
 	public APIBean buildBean() {
 		APIBean newBean = bean;
-		newBean.setJavaCode(this.buildJavaCode());
+		String javaClassCode = this.buildJavaCode();
+		newBean.setJavaCode(javaClassCode);
 		bean = null;
 		return newBean;
 	}
 
 	private String buildJavaCode() {
 		StringBuilder sb = new StringBuilder();
-		String classCanonicalName = bean.getPackageName()+"."+bean.getClassName();
+		String classCanonicalName = bean.getPackageName() + Constants.Dot + bean.getClassName();
 		bean.setClassCanonicalName(classCanonicalName);
 		
 		//Creating Class structure
-		sb.append("package ").append(bean.getPackageName()).append(";\n"); //Define Package
-		bean.getImportsList().forEach((importItem) -> sb.append("import ").append(importItem).append(";\n")); //Define Imported Classes
+		sb.append("package ").append(bean.getPackageName()).append(Constants.ColonWithNewLine); //Define Package
+		bean.getImportsList().forEach((importItem) -> sb.append("import ").append(importItem).append(Constants.ColonWithNewLine)); //Define Imported Classes
 		
-		sb.append("@RestController\n");
-		sb.append("public class ").append(bean.getClassName()).append(" extends org.rest.server.core.components.Bean{\n");		
-		bean.getMethods().forEach((method) -> sb.append(buildMethod(method)).append("\n"));
-		sb.append("}");
+		sb.append(Constants.Annotation_RestController).append(Constants.NewLine);
+		sb.append("public class ").append(bean.getClassName()).append(" extends org.rest.server.core.components.Bean")
+			.append(Constants.CurlyBraceOpen).append(Constants.NewLine);		
+		bean.getMethods().forEach((method) -> sb.append(BuilderUtility.buildMethod(method)).append(Constants.NewLine));
+		sb.append(Constants.CurlyBraceClose);
 
 		return sb.toString();
 	}
 
-	private String buildMethod(MethodBody methodBody) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(methodBody.getRequestMapping()).append("\n"); // Adding
-																// RequestMapping
-		sb.append(methodBody.getMethodSignature());
-		sb.append("{\n");
-		methodBody.getBodyStatements().forEach((statement) -> sb.append(statement).append("\n"));
-		sb.append("}\n");
-		return sb.toString();
-	}
+	
 
 }

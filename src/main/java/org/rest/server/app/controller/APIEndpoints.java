@@ -1,7 +1,7 @@
-package org.rest.server.web.apis;
+package org.rest.server.app.controller;
 
-import org.rest.server.common.components.ClassCompilationException;
-import org.rest.server.runtime.RuntimeCompiler;
+import org.rest.server.core.exception.ClassCompilationException;
+import org.rest.server.core.runtime.RuntimeCompiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
