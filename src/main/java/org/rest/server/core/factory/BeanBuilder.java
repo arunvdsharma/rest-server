@@ -11,7 +11,7 @@ interface BeanBuilder {
 
 	BeanBuilder addMethod(MethodBody methodBody);
 
-	BeanBuilder addImports(List<String> importList);
+	BeanBuilder setImports(List<String> importList);
 
 	Bean buildBean();
 }

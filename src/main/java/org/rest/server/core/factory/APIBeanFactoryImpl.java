@@ -26,7 +26,7 @@ class APIBeanFactoryImpl implements APIBeanFactory {
 		validateBeanObject(beanVO);
 		
 		beanBuilder.configure(beanVO.getClassName());
-		beanBuilder.addImports(beanVO.getImportsList());
+		beanBuilder.setImports(beanVO.getImportsList());
 		List<MethodBody> methodList = beanVO.getMethods();
 		Optional.ofNullable(methodList).ifPresent(list -> list.forEach(item -> {
 			beanBuilder.addMethod(item);

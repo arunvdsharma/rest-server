@@ -13,7 +13,7 @@ import net.openhft.compiler.CompilerUtils;
 class CompilerImpl implements RuntimeCompiler {
 
 	@Autowired
-	private ServerContainer container;
+	private AppBeanContainer container;
 
 	/**
 	 * The 'compile' method mainly does two jobs: 

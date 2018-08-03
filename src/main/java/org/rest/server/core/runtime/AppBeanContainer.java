@@ -7,7 +7,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Component
-class ServerContainer {
+class AppBeanContainer {
 	
 	@Autowired
 	private GenericWebApplicationContext context;

@@ -33,12 +33,11 @@ class APIBuilderImpl implements APIBuilder {
 
 	@Override
 	public APIBuilder addControllerMapping(String requestMappingUrl) {
-		//CommonUtils.checkIfArgumentIsNull(requestMappingUrl);
 		bean.setRequestMappingURL(requestMappingUrl);
 		return this;
 	}
 	
-	public APIBuilder addImports(List<String> importList){
+	public APIBuilder setImports(List<String> importList){
 		bean.setImportsList(importList);
 		return this;
 	}

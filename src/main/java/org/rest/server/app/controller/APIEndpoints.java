@@ -1,5 +1,6 @@
 package org.rest.server.app.controller;
 
+import org.rest.server.app.facade.AppFacade;
 import org.rest.server.core.exception.ClassCompilationException;
 import org.rest.server.core.runtime.RuntimeCompiler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,13 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 public class APIEndpoints {
 
 	@Autowired
-	private RuntimeCompiler envrionment;
+	private AppFacade envrionment;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	@HystrixCommand(fallbackMethod = "getDataFallBack")
 	public void addBean() {
 		try {
-			envrionment.registerBean(null);
+			envrionment.createControllerClass(null);
 		} catch (ClassCompilationException e) {
 			e.printStackTrace();
 		}		

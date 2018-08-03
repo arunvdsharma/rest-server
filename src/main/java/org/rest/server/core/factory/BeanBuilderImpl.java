@@ -26,7 +26,7 @@ public class BeanBuilderImpl implements BeanBuilder{
 	}
 
 	@Override
-	public BeanBuilder addImports(List<String> importList) {
+	public BeanBuilder setImports(List<String> importList) {
 		// TODO Auto-generated method stub
 		return null;
 	}
