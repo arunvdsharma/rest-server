@@ -19,11 +19,7 @@ public class APIEndpoints {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	@HystrixCommand(fallbackMethod = "getDataFallBack")
 	public void addBean() {
-		try {
-			envrionment.createControllerClass(null);
-		} catch (ClassCompilationException e) {
-			e.printStackTrace();
-		}		
+		envrionment.createControllerClass(null);
 	}
 	
 	public String getDataFallBack(String id) {	
