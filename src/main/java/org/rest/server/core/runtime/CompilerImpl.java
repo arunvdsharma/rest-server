@@ -19,7 +19,7 @@ import net.openhft.compiler.CompilerUtils;
 class CompilerImpl implements RuntimeCompiler {
 
 	@Autowired
-	private AppBeanContainer container;
+	private BeanContext beanContext;
 
 	/**
 	 * The 'compile' method mainly does two jobs: 
@@ -43,12 +43,14 @@ class CompilerImpl implements RuntimeCompiler {
 		Class<?> aClass = this.compile(bean);
 		try {
 			BeanClass beanObj = (BeanClass) aClass.newInstance();
-			container.registerBean(beanObj.getClassName().toLowerCase(), beanObj);
+			beanContext.registerBean(beanObj.getClassName().toLowerCase(), beanObj);
 			this.invokeMethod(StringUtils.EMPTY, beanObj);
 		} catch (Exception ex) {
 			throw new ClassCompilationException(ex);
 		}
 	}
+	
+	
 	
 	private void invokeMethod(String methodName, BeanClass beanObject) throws ClassCompilationException {
 		Method[] methods = beanObject.getClass().getMethods();

@@ -11,7 +11,7 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Component
-class AppBeanContainer {
+class BeanContext {
 	
 	@Autowired
 	private GenericWebApplicationContext context;
@@ -28,9 +28,11 @@ class AppBeanContainer {
 	
 	public void removeBean(String beanName){
 		assertNotNull(beanName);
-		BeanDefinitionRegistry factory = 
-				   (BeanDefinitionRegistry) context.getAutowireCapableBeanFactory();
-		factory.removeBeanDefinition(beanName);
+		if(!context.containsBean(beanName)){
+			BeanDefinitionRegistry factory = 
+					   (BeanDefinitionRegistry) context.getAutowireCapableBeanFactory();
+			factory.removeBeanDefinition(beanName);
+		}
 	}
 	
 	public void updateRegisteredBean(String beanName, BeanClass bean){
