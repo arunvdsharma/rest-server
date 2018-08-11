@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.rest.server.core.components.MethodBody;
+import org.rest.server.core.components.BeanMethod;
 
 public class BeanVO {
 
 	private String className;
 	private String packageName;
 	private Class<?> beanClass;
-	private List<MethodBody> methods;
+	private List<BeanMethod> methods;
 	private List<String> importsList;
 	private Map<String, String> fields;
 
@@ -45,11 +45,11 @@ public class BeanVO {
 		return beanClass;
 	}
 
-	public List<MethodBody> getMethods() {
+	public List<BeanMethod> getMethods() {
 		return methods;
 	}
 
-	public void addMethod(MethodBody method) {
+	public void addMethod(BeanMethod method) {
 		this.methods.add(method);
 	}
 

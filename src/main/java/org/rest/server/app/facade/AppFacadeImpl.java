@@ -1,8 +1,11 @@
 package org.rest.server.app.facade;
 
 import org.rest.server.app.vo.BeanVO;
+import org.rest.server.core.components.BeanClass;
 import org.rest.server.core.components.BeanType;
+import org.rest.server.core.exception.ClassCompilationException;
 import org.rest.server.core.factory.APIBeanFactory;
+import org.rest.server.core.runtime.RuntimeCompiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,24 +21,31 @@ class AppFacadeImpl implements AppFacade{
 	@Autowired
 	private APIBeanFactory factory;
 	
+	@Autowired
+	private RuntimeCompiler compiler;
 	
 	@Override
-	public void createControllerClass(BeanVO beanVO){
-		factory.createBeanClass(BeanType.CONTROLLER, beanVO);
+	public void createControllerClass(BeanVO beanVO) throws ClassCompilationException {
+		createAndRegisterBean(BeanType.CONTROLLER, beanVO);
 	}
 	
 	@Override
-	public void createBeanClass(BeanVO beanVO){
-		factory.createBeanClass(BeanType.BEAN, beanVO);
+	public void createBeanClass(BeanVO beanVO) throws ClassCompilationException{
+		createAndRegisterBean(BeanType.BEAN, beanVO);
 	}
 	
 	@Override
-	public void createRepositoryClass(BeanVO beanVO){
-		factory.createBeanClass(BeanType.REPOSITORY, beanVO);
+	public void createRepositoryClass(BeanVO beanVO)throws ClassCompilationException{
+		createAndRegisterBean(BeanType.REPOSITORY, beanVO);
 	}
 	
 	@Override
-	public void createServiceClass(BeanVO beanVO){
-		factory.createBeanClass(BeanType.SERVICE, beanVO);
+	public void createServiceClass(BeanVO beanVO)throws ClassCompilationException{
+		createAndRegisterBean(BeanType.SERVICE, beanVO);
+	}
+	
+	private void createAndRegisterBean(BeanType beanType, BeanVO beanVO) throws ClassCompilationException{
+		BeanClass bean = factory.createBeanClass(beanType, beanVO);
+		compiler.registerBean(bean);
 	}
 }

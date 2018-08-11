@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import org.rest.server.app.vo.APIBeanVO;
 import org.rest.server.app.vo.BeanVO;
-import org.rest.server.core.components.Bean;
+import org.rest.server.core.components.BeanClass;
 import org.rest.server.core.components.BeanType;
-import org.rest.server.core.components.MethodBody;
-import org.rest.server.core.utils.CommonUtils;
+import org.rest.server.core.components.BeanMethod;
+import org.rest.server.core.utils.CommonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +19,15 @@ class APIBeanFactoryImpl implements APIBeanFactory {
 	private BeanBuilder beanBuilder;
 
 	@Override
-	public Bean createBeanClass(BeanType beanType, BeanVO beanVO) {
-		Bean bean = null;
+	public BeanClass createBeanClass(BeanType beanType, BeanVO beanVO) {
+		BeanClass bean = null;
 		
 		//method to validate if Bean qualifies to be a valid Bean object or not.
 		validateBeanObject(beanVO);
 		
 		beanBuilder.configure(beanVO.getClassName());
 		beanBuilder.setImports(beanVO.getImportsList());
-		List<MethodBody> methodList = beanVO.getMethods();
+		List<BeanMethod> methodList = beanVO.getMethods();
 		Optional.ofNullable(methodList).ifPresent(list -> list.forEach(item -> {
 			beanBuilder.addMethod(item);
 		}));
@@ -46,7 +46,7 @@ class APIBeanFactoryImpl implements APIBeanFactory {
 	}
 	
 	private void validateBeanObject(BeanVO bean){
-		CommonUtils.checkIfArgumentIsNull(bean, bean.getClassName(), bean.getMethods(), bean.getImportsList());
+		CommonValidator.throwExceptionIfNull(bean, bean.getClassName(), bean.getMethods(), bean.getImportsList());
 	}
 
 }

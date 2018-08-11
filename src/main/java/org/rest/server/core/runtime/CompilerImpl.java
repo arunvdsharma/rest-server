@@ -2,13 +2,19 @@ package org.rest.server.core.runtime;
 
 import java.lang.reflect.Method;
 
-import org.rest.server.core.components.Bean;
+import org.apache.commons.lang.StringUtils;
+import org.rest.server.core.components.BeanClass;
 import org.rest.server.core.exception.ClassCompilationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import net.openhft.compiler.CompilerUtils;
 
+/**
+ * 
+ * @author Arun Sharma
+ *
+ */
 @Component
 class CompilerImpl implements RuntimeCompiler {
 
@@ -22,7 +28,7 @@ class CompilerImpl implements RuntimeCompiler {
 	 * @param bean
 	 * @return
 	 */
-	private Class<?> compile(Bean bean) throws ClassCompilationException {
+	private Class<?> compile(BeanClass bean) throws ClassCompilationException {
 		Class<?> clazz = null;
 		try {
 			clazz = CompilerUtils.CACHED_COMPILER.loadFromJava(bean.getClassCanonicalName(), bean.getJavaCode());
@@ -33,18 +39,18 @@ class CompilerImpl implements RuntimeCompiler {
 	}
 
 	@Override
-	public void registerBean(Bean bean) throws ClassCompilationException {
+	public void registerBean(BeanClass bean) throws ClassCompilationException {
 		Class<?> aClass = this.compile(bean);
 		try {
-			Bean beanObj = (Bean) aClass.newInstance();
-			container.registerBean("testBean", beanObj);
-			this.invokeMethod("", beanObj);
+			BeanClass beanObj = (BeanClass) aClass.newInstance();
+			container.registerBean(beanObj.getClassName().toLowerCase(), beanObj);
+			this.invokeMethod(StringUtils.EMPTY, beanObj);
 		} catch (Exception ex) {
 			throw new ClassCompilationException(ex);
 		}
 	}
 	
-	public void invokeMethod(String methodName, Bean beanObject) {
+	private void invokeMethod(String methodName, BeanClass beanObject) throws ClassCompilationException {
 		Method[] methods = beanObject.getClass().getMethods();
 
 		for (Method method : methods) {
@@ -52,7 +58,7 @@ class CompilerImpl implements RuntimeCompiler {
 				try {
 					method.invoke(beanObject);
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					throw new ClassCompilationException(ex);
 				}
 			}
 		}

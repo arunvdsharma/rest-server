@@ -2,7 +2,6 @@ package org.rest.server.app.controller;
 
 import org.rest.server.app.facade.AppFacade;
 import org.rest.server.core.exception.ClassCompilationException;
-import org.rest.server.core.runtime.RuntimeCompiler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,10 +15,14 @@ public class APIEndpoints {
 	@Autowired
 	private AppFacade envrionment;
 	
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@HystrixCommand(fallbackMethod = "getDataFallBack")
 	public void addBean() {
-		envrionment.createControllerClass(null);
+		try {
+			envrionment.createControllerClass(null);
+		} catch (ClassCompilationException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getDataFallBack(String id) {	

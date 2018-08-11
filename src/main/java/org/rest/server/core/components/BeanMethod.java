@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-public class MethodBody {
+public class BeanMethod {
 
 	private String methodSignature;
 
@@ -13,12 +13,12 @@ public class MethodBody {
 
 	private String requestMapping;
 
-	public MethodBody() {
+	public BeanMethod() {
 		this.bodyStatements = new ArrayList<>();
 		this.requestMapping = StringUtils.EMPTY;
 	}
 
-	public MethodBody(String methodSignature) {
+	public BeanMethod(String methodSignature) {
 		this();
 		this.methodSignature = methodSignature;
 	}

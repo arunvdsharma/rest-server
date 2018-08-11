@@ -4,22 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Bean {
+/**
+ * 
+ * @author ArunS1
+ *
+ */
+public class BeanClass {
 
 	private String className;
 	private String classCanonicalName;
 	private String packageName;
 	private Class<?> beanClass;
-	private List<MethodBody> methods;
+	private List<BeanMethod> methods;
 	private List<String> importsList;
 	private Map<String, String> fields;
 	private String javaCode;
 
-	public Bean(){
+	public BeanClass(){
 		this(null);
 	}
 	
-	public Bean(String className) {
+	public BeanClass(String className) {
 		this.className = className;
 		this.methods = new ArrayList<>();
 		this.importsList = new ArrayList<>();
@@ -65,15 +70,15 @@ public class Bean {
 		this.beanClass = beanClass;
 	}
 
-	public List<MethodBody> getMethods() {
+	public List<BeanMethod> getMethods() {
 		return methods;
 	}
 
-	public void addMethod(MethodBody method) {
+	public void addMethod(BeanMethod method) {
 		this.methods.add(method);
 	}
 
-	public void setMethods(List<MethodBody> methods) {
+	public void setMethods(List<BeanMethod> methods) {
 		this.methods = methods;
 	}
 

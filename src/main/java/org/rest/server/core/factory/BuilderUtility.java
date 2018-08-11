@@ -1,10 +1,10 @@
 package org.rest.server.core.factory;
 
-import org.rest.server.core.components.MethodBody;
+import org.rest.server.core.components.BeanMethod;
 
 class BuilderUtility {
 
-	public static String buildMethod(MethodBody methodBody) {
+	public static String buildMethod(BeanMethod methodBody) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(methodBody.getRequestMapping()).append("\n"); // Adding
 																// RequestMapping

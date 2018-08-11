@@ -1,10 +1,10 @@
 package org.rest.server.core.components;
 
-public class APIBean extends Bean {
+public class APIBeanClass extends BeanClass {
 
 	private String requestMappingURL;
 	
-	public APIBean(String className){
+	public APIBeanClass(String className){
 		super(className);
 	}
 

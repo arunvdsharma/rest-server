@@ -2,9 +2,9 @@ package org.rest.server.core.factory;
 
 import java.util.List;
 
-import org.rest.server.core.components.APIBean;
-import org.rest.server.core.components.MethodBody;
-import org.rest.server.core.utils.CommonUtils;
+import org.rest.server.core.components.APIBeanClass;
+import org.rest.server.core.components.BeanMethod;
+import org.rest.server.core.utils.CommonValidator;
 import org.rest.server.core.utils.Constants;
 import org.springframework.stereotype.Component;
 
@@ -12,21 +12,21 @@ import org.springframework.stereotype.Component;
 @Component
 class APIBuilderImpl implements APIBuilder {
 
-	private static String INTERNAL_PACKAGE_NAME = APIBuilderImpl.class.getPackage().getName();
+	private static String DEFAULT_PACKAGE_NAME = APIBuilderImpl.class.getPackage().getName();
 
-	private APIBean bean;
+	private APIBeanClass bean;
 
 	@Override
 	public APIBuilder configure(String className) {
-		CommonUtils.checkIfArgumentIsNull(className);
-		bean = new APIBean(className);
-		bean.setPackageName(INTERNAL_PACKAGE_NAME);
+		CommonValidator.throwExceptionIfNull(className);
+		bean = new APIBeanClass(className);
+		bean.setPackageName(DEFAULT_PACKAGE_NAME);
 		return this;
 	}
 
 	@Override
-	public APIBuilder addMethod(MethodBody methodBody) {
-		CommonUtils.checkIfArgumentIsNull(methodBody);
+	public APIBuilder addMethod(BeanMethod methodBody) {
+		CommonValidator.throwExceptionIfNull(methodBody);
 		bean.addMethod(methodBody);
 		return this;
 	}
@@ -43,8 +43,8 @@ class APIBuilderImpl implements APIBuilder {
 	}
 
 	@Override
-	public APIBean buildBean() {
-		APIBean newBean = bean;
+	public APIBeanClass buildBean() {
+		APIBeanClass newBean = bean;
 		String javaClassCode = this.buildJavaCode();
 		newBean.setJavaCode(javaClassCode);
 		bean = null;

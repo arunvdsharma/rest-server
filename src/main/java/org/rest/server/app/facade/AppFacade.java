@@ -1,6 +1,7 @@
 package org.rest.server.app.facade;
 
 import org.rest.server.app.vo.BeanVO;
+import org.rest.server.core.exception.ClassCompilationException;
 
 /**
  * 
@@ -9,12 +10,12 @@ import org.rest.server.app.vo.BeanVO;
  */
 public interface AppFacade {
 
-	void createServiceClass(BeanVO beanVO);
+	void createServiceClass(BeanVO beanVO)throws ClassCompilationException;
 
-	void createRepositoryClass(BeanVO beanVO);
+	void createRepositoryClass(BeanVO beanVO) throws ClassCompilationException;
 
-	void createBeanClass(BeanVO beanVO);
+	void createBeanClass(BeanVO beanVO)throws ClassCompilationException;
 
-	void createControllerClass(BeanVO beanVO);
+	void createControllerClass(BeanVO beanVO)throws ClassCompilationException;
 
 }
